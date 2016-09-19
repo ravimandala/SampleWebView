@@ -8,7 +8,7 @@ The challenge here is to get the code working as before with proposed changes on
 
 ## **Set up:**
 * Get an Nexus 5X/6P and upgrade it to Android Nougat (API-24 aka. 7.0). 
-** Register the device on beta channel to get Android N, if needed.
+  * Register the device on beta channel to get Android N, if needed.
 * Create a local file named dummy_file.html on the device with below content (no changes to html allowed).
 ```html
 <html><body>
@@ -21,6 +21,7 @@ The challenge here is to get the code working as before with proposed changes on
 
 ## **Constraints**:
 * The dummy_file.html file contents shouldn't be changed.
+* Solution should be free of any race condition and should always work irrespective of the amount of javascript code being injected before loading dummy_file.html.
 
 ## **Bonus challenge:**
 * [ ] Hints can be provided upon request.
