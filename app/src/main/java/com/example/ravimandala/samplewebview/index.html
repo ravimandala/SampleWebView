@@ -1,0 +1,115 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <title>Vungle Cloud UX Template</title>
+    <script src="mraid.js"></script>
+    <style>
+        .spinner {
+            position: relative;
+            display: none;
+            top: 50%;
+            width: 1em;
+            height: 1em;
+            font-size: 50px;
+            text-indent: -9999em;
+            overflow: hidden;
+            margin: -25px auto;
+            border-radius: 50%;
+            opacity: 1;
+            transition: opacity .75s ease-in-out;
+            -moz-transition: opacity .75s ease-in-out;
+            -webkit-transition: opacity .75s ease-in-out;
+            -webkit-transform: translateZ(0);
+            -ms-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-animation: animate-spinner 1.7s infinite ease;
+            animation: animate-spinner 1.7s infinite ease;
+        }
+
+        @-webkit-keyframes animate-spinner {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, 0 -0.83em 0 -0.42em #ffffff, 0 -0.83em 0 -0.44em #ffffff, 0 -0.83em 0 -0.46em #ffffff, 0 -0.83em 0 -0.477em #ffffff;
+                opacity: 0.2;
+            }
+            5%,
+            95% {
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, 0 -0.83em 0 -0.42em #ffffff, 0 -0.83em 0 -0.44em #ffffff, 0 -0.83em 0 -0.46em #ffffff, 0 -0.83em 0 -0.477em #ffffff;
+            }
+            10%,
+            59% {
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, -0.087em -0.825em 0 -0.42em #ffffff, -0.173em -0.812em 0 -0.44em #ffffff, -0.256em -0.789em 0 -0.46em #ffffff, -0.297em -0.775em 0 -0.477em #ffffff;
+            }
+            20% {
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, -0.338em -0.758em 0 -0.42em #ffffff, -0.555em -0.617em 0 -0.44em #ffffff, -0.671em -0.488em 0 -0.46em #ffffff, -0.749em -0.34em 0 -0.477em #ffffff;
+                opacity: 0.4;
+            }
+            38% {
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, -0.377em -0.74em 0 -0.42em #ffffff, -0.645em -0.522em 0 -0.44em #ffffff, -0.775em -0.297em 0 -0.46em #ffffff, -0.82em -0.09em 0 -0.477em #ffffff;
+                opacity: 0.6;
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+                box-shadow: 0 -0.83em 0 -0.4em #ffffff, 0 -0.83em 0 -0.42em #ffffff, 0 -0.83em 0 -0.44em #ffffff, 0 -0.83em 0 -0.46em #ffffff, 0 -0.83em 0 -0.477em #ffffff;
+                opacity: 0.8;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="css/vungle.index.min.css">
+    <script>
+        "use strict";
+
+        var asyncLoadJavaScript = function(url, callback) {
+            var scriptTag = document.createElement("script");
+
+            scriptTag.type = "text/javascript";
+            scriptTag.src = url;
+
+            if (scriptTag.readyState) {
+                scriptTag.onreadystatechange = function() {
+                    if (scriptTag.readyState === "loaded" || scriptTag.readyState === "completed") {
+                        scriptTag.onreadystatechange = null;
+                    }
+                };
+            } else {
+                scriptTag.onload = function() {
+                    callback && callback();
+                };
+            }
+
+            document.getElementsByTagName("head")[0].appendChild(scriptTag);
+        };
+    </script>
+</head>
+
+<body>
+<div id="spinner" class="spinner">Loading...</div>
+<div id="dynamic">
+    <!-- the entire ad unit experience will be created dynamically and inserted here -->
+</div>
+<script>
+        (function(window) {
+            "use strict";
+
+            var vgl = window.vungle = window.vungle || {};
+
+            vgl.config = {
+                adUnit: "gradient",
+                pages: ["Video", "GradientEndcard"],
+                components: ["DialogBox"],
+                cacheBuster: "t=" + (new Date()).getTime()
+            };
+
+            asyncLoadJavaScript("js/vungle.third-party.min.js?" + vgl.config.cacheBuster, function() {
+                asyncLoadJavaScript("js/" + vgl.config.adUnit + ".vungle.main.min.js?" + vgl.config.cacheBuster);
+            });
+
+        })(window);
+    </script>
+</body>
+
+</html>
